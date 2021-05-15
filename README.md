@@ -1,6 +1,6 @@
 # BundleMonkey
 
-**BundleMonkey** is GUI tool to edit the resource bundles of a Tentackle application.
+**BundleMonkey** is a GUI tool to edit the resource bundles of a Tentackle application.
 The application automatically retrieves the bundles from the database instead of the application's jars,
 if the tentackle-i18n module is part of the module- or classpath. Whenever the application finds
 the corresponding bundle in the database, the database version will be used. If there is no such database

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<VBox xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.tentackle.bundlemonkey.gui.bundle.TranslationEditor">
+   <children>
+      <Label fx:id="translationLocale" text="locale">
+         <VBox.margin>
+            <Insets bottom="5.0" left="15.0" right="10.0" top="20.0" />
+         </VBox.margin>
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </Label>
+      <TextArea fx:id="translationValue">
+         <VBox.margin>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </VBox.margin>
+      </TextArea>
+   </children>
+</VBox>

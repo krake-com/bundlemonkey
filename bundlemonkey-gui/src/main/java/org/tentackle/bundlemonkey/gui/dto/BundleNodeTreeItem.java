@@ -1,0 +1,66 @@
+/*
+ * Tentackle - https://tentackle.org
+ *
+ * This library is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU Lesser General Public
+ * License as published by the Free Software Foundation; either
+ * version 2.1 of the License, or (at your option) any later version.
+ *
+ * This library is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public
+ * License along with this library; if not, write to the Free Software
+ * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+ */
+
+package org.tentackle.bundlemonkey.gui.dto;
+
+import javafx.collections.ObservableList;
+import javafx.scene.control.TreeItem;
+
+import org.tentackle.bundlemonkey.common.BundleNode;
+
+import java.util.ArrayList;
+import java.util.List;
+
+/**
+ * Tree item for a {@link BundleNode}.
+ *
+ * @param <T> the node type
+ */
+public class BundleNodeTreeItem<T extends BundleNode> extends TreeItem<T> {
+
+  private boolean childrenLoaded;
+
+  public BundleNodeTreeItem(T node) {
+    super(node);
+  }
+
+  @Override
+  public boolean isLeaf() {
+    return getValue() == null || getValue().getNodes() == null;
+  }
+
+  @Override
+  @SuppressWarnings("unchecked")
+  public ObservableList<TreeItem<T>> getChildren() {
+    if (!childrenLoaded) {
+      childrenLoaded = true;
+      List<TreeItem<T>> childItems = new ArrayList<>();
+      if (getValue() != null) {
+        List<? extends BundleNode> nodes = getValue().getNodes();
+        if (nodes != null) {
+          for (BundleNode node : nodes) {
+            childItems.add(new BundleNodeTreeItem(node));
+          }
+        }
+      }
+      super.getChildren().setAll(childItems);
+    }
+    return super.getChildren();
+  }
+
+}

@@ -1,0 +1,16 @@
+
+.bundle-missing {
+    -fx-background-color: #ffffcc;
+}
+
+.bundle-missing:selected {
+    -fx-background-color: #ff922f;
+}
+
+.bundle-modified {
+    -fx-background-color: #dfdfff;
+}
+
+.bundle-modified:selected {
+    -fx-background-color: #9191ff;
+}

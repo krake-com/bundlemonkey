@@ -1,0 +1,12 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="run" type="Application" factoryName="Application">
+    <option name="ALTERNATIVE_JRE_PATH" value="/localhome/java/jdk16" />
+    <option name="MAIN_CLASS_NAME" value="org.tentackle.bundlemonkey.client.BundleMonkeyFxClient" />
+    <module name="bundlemonkey-client" />
+    <option name="PROGRAM_PARAMETERS" value="--statistics" />
+    <option name="VM_PARAMETERS" value="-cp $MODULE_DIR$/target/test-classes" />
+    <method v="2">
+      <option name="Make" enabled="true" />
+    </method>
+  </configuration>
+</component>

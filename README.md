@@ -49,8 +49,14 @@ bundles that were not refactored accidently. This can easily be performed by Bun
 (via the tree-tables context menu, see below).
 
 ## Installation
-BundleMonkey is usually installed by unpacking the platform specific jlink ZIP-archive. It is invoked via
-a start script found in the **bin** folder.
+BundleMonkey is usually installed by downloading and unpacking the platform specific jlink ZIP-archive:
+
+- [Linux](https://tentackle.org/static-content/downloads/bundlemonkey/bundlemonkey-jlink-client-1.0.0-linux-amd64.zip)
+- [Windows](https://tentackle.org/static-content/downloads/bundlemonkey/bundlemonkey-jlink-client-1.0.0-windows-amd64.zip)
+- [MacOS](https://tentackle.org/static-content/downloads/bundlemonkey/bundlemonkey-jlink-client-1.0.0-macosx-x86_64.zip)
+
+It is invoked via a start script found in the **bin** folder (**bundlemonkey.sh** or **bundlemonkey.cmd**,
+depending on the platform).
 
 ![Login](src/graphics/login.png)
 

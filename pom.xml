@@ -47,7 +47,7 @@
     <project.build.resourceEncoding>UTF-8</project.build.resourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
-    <tentackle.version>16.0-SNAPSHOT</tentackle.version>
+    <tentackle.version>18.0-SNAPSHOT</tentackle.version>
     <tentackle.serviceDir>${project.build.directory}/generated-resources/services</tentackle.serviceDir>
     <tentackle.testServiceDir>${project.build.directory}/generated-test-resources/services</tentackle.testServiceDir>
     <tentackle.manifestDirectory>${project.build.directory}/generated-resources/manifest</tentackle.manifestDirectory>
@@ -98,7 +98,7 @@
       <dependency>
         <groupId>ch.qos.logback</groupId>
         <artifactId>logback-classic</artifactId>
-        <version>1.2.3</version>
+        <version>1.2.7</version>
         <scope>runtime</scope>
       </dependency>
 
@@ -230,7 +230,7 @@
               <dependency>    <!-- necessary for fx-rdc processors because deps are not recognized here -->
                 <groupId>org.openjfx</groupId>
                 <artifactId>javafx-controls</artifactId>
-                <version>16</version>
+                <version>17.0.1</version>
               </dependency>
             </annotationProcessorPaths>
           </configuration>
@@ -258,7 +258,7 @@
             <dependency>
               <groupId>org.ow2.asm</groupId>
               <artifactId>asm</artifactId>
-              <version>9.1</version> <!-- Use newer version of ASM -->
+              <version>9.2</version> <!-- Use newer version of ASM -->
             </dependency>
           </dependencies>
         </plugin>
@@ -266,19 +266,19 @@
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-jar-plugin</artifactId>
-          <version>3.1.2</version>
+          <version>3.2.0</version>
         </plugin>
 
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-dependency-plugin</artifactId>
-          <version>3.1.1</version>
+          <version>3.2.0</version>
         </plugin>
 
         <plugin>
           <groupId>org.codehaus.mojo</groupId>
           <artifactId>exec-maven-plugin</artifactId>
-          <version>1.6.0</version>
+          <version>3.0.0</version>
           <configuration>
             <classpathScope>test</classpathScope>
           </configuration>
@@ -287,20 +287,13 @@
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-source-plugin</artifactId>
-          <version>3.1.0</version>
+          <version>3.2.1</version>
         </plugin>
 
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-javadoc-plugin</artifactId>
-          <version>3.1.0</version>
-          <dependencies>
-            <dependency>
-              <groupId>org.ow2.asm</groupId>
-              <artifactId>asm</artifactId>
-              <version>9.1</version>
-            </dependency>
-          </dependencies>
+          <version>3.3.1</version>
         </plugin>
 
         <plugin>
@@ -384,11 +377,7 @@
                 </goals>
                 <configuration>
                   <quiet>true</quiet>
-                  <additionalOptions>
-                    <additionalOption>-html5</additionalOption>
-                    <!-- don't complain about wurblet args -->
-                    <additionalOption>-Xdoclint:none</additionalOption>
-                  </additionalOptions>
+                  <doclint>none</doclint>
                 </configuration>
               </execution>
             </executions>

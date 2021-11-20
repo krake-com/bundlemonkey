@@ -501,13 +501,15 @@ public class MainController extends AbstractFxController implements DomainContex
    */
   private boolean checkTranslation(BundleKey bundleKey, String locale, String ucFind) {
     BundleTranslation translation = bundleKey.getTranslation(locale);
-    String value = translation.getValue();
-    if (!ucLcButton.isSelected()) {
-      value = value.toUpperCase();
-    }
-    if (translation != null && value.contains(ucFind)) {
-      foundLocale = locale;
-      return true;
+    if (translation != null) {
+      String value = translation.getValue();
+      if (!ucLcButton.isSelected()) {
+        value = value.toUpperCase();
+      }
+      if (value.contains(ucFind)) {
+        foundLocale = locale;
+        return true;
+      }
     }
     return false;
   }

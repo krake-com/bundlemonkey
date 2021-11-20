@@ -5,7 +5,7 @@
   <parent>
     <groupId>org.tentackle</groupId>
     <artifactId>bundlemonkey</artifactId>
-    <version>1.0.0</version>
+    <version>1.0-SNAPSHOT</version>
   </parent>
 
   <artifactId>bundlemonkey-gui</artifactId>
@@ -42,10 +42,6 @@
     <dependency>
       <groupId>org.tentackle</groupId>
       <artifactId>tentackle-test-fx-rdc</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.reflections</groupId>
-      <artifactId>reflections</artifactId>
     </dependency>
   </dependencies>
 

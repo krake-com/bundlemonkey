@@ -83,9 +83,10 @@ public class TranslationEditor extends AbstractFxController {
       locale = resources.getString("default");
     }
     translationLocale.setText(locale);
-    translationValue.setText(translation.getInitialValue());    // set initial first to allow Ctrl-Z via saveView below
+    // set initial first to allow Ctrl-Z via saveView below
+    translationValue.setText(translation == null ? null : translation.getInitialValue());
     getContainer().saveView();
-    getContainer().updateView();                                // this sets the current translation
+    getContainer().updateView();   // this sets the current translation
     valueUpdated();
   }
 

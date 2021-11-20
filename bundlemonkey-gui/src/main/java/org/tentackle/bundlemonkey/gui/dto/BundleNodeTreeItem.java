@@ -45,7 +45,7 @@ public class BundleNodeTreeItem<T extends BundleNode> extends TreeItem<T> {
   }
 
   @Override
-  @SuppressWarnings("unchecked")
+  @SuppressWarnings({ "unchecked", "rawtypes" })
   public ObservableList<TreeItem<T>> getChildren() {
     if (!childrenLoaded) {
       childrenLoaded = true;

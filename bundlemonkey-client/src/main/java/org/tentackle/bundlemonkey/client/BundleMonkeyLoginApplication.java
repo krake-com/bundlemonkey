@@ -18,8 +18,7 @@ public class BundleMonkeyLoginApplication extends LoginApplication {
   @Override
   protected Login loadLoginController() {
     URL cssUrl = BundleMonkeyLoginApplication.class.getResource("/org/tentackle/bundlemonkey/client/BundleMonkeyLogin.css");
-    Login loginController = FxFactory.getInstance().createController(BundleMonkeyLogin.class, null, null, cssUrl);
-    return loginController;
+    return FxFactory.getInstance().createController(BundleMonkeyLogin.class, null, null, cssUrl);
   }
 
 }

@@ -36,7 +36,7 @@ public class BundleNodeTableConfigurationProvider extends DefaultTableConfigurat
     return new BundleNodeTableConfiguration<>(clazz, name) {
 
       @Override
-      @SuppressWarnings("unchecked")
+      @SuppressWarnings({ "unchecked", "rawtypes" })
       public TreeItem<BundleNode> createTreeItem(BundleNode object) {
         return new BundleNodeTreeItem(object);
       }

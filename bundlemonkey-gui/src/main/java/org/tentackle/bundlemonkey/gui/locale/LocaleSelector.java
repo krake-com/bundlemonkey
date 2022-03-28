@@ -97,7 +97,7 @@ public class LocaleSelector extends AbstractFxController implements BundlesUpdat
    */
   private void addLocaleRadioButton(String locale) {
     localeRadioButtonMap.computeIfAbsent(locale, loc -> {
-      FxRadioButton radioButton = Fx.createNode(RadioButton.class);
+      FxRadioButton radioButton = Fx.create(RadioButton.class);
       radioButton.setOnAction(event -> repository.setLocaleActive(radioButton.getBindingPath(), radioButton.isSelected()));
       radioButton.setBindingPath(locale);
       radioButton.setText("".equals(locale) ? resources.getString("default") : locale);

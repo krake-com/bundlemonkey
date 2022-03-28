@@ -191,10 +191,10 @@
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-compiler-plugin</artifactId>
-          <version>3.8.1</version>
+          <version>3.10.1</version>
           <configuration>
             <encoding>UTF-8</encoding>
-            <release>16</release>
+            <release>18</release>
             <showWarnings>true</showWarnings>
             <showDeprecation>true</showDeprecation>
             <compilerArgs>
@@ -225,7 +225,7 @@
               <dependency>    <!-- necessary for fx-rdc processors because deps are not recognized here -->
                 <groupId>org.openjfx</groupId>
                 <artifactId>javafx-controls</artifactId>
-                <version>17.0.1</version>
+                <version>18</version>
               </dependency>
             </annotationProcessorPaths>
           </configuration>
@@ -261,13 +261,13 @@
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-jar-plugin</artifactId>
-          <version>3.2.0</version>
+          <version>3.2.2</version>
         </plugin>
 
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-dependency-plugin</artifactId>
-          <version>3.2.0</version>
+          <version>3.3.0</version>
         </plugin>
 
         <plugin>
@@ -288,7 +288,7 @@
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-javadoc-plugin</artifactId>
-          <version>3.3.1</version>
+          <version>3.3.2</version>
         </plugin>
 
         <plugin>

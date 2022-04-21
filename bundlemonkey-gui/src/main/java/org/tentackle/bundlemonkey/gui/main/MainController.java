@@ -145,21 +145,21 @@ public class MainController extends AbstractFxController implements DomainContex
     localeSelector = Fx.load(LocaleSelector.class);
     innerBorderPane.setTop(localeSelector.getView());
 
-    preferencesItem.setGraphic(Fx.createImageView("preferences"));
+    preferencesItem.setGraphic(Fx.createGraphic("preferences"));
     preferencesItem.setDisable(!SecurityFactory.getInstance().getSecurityManager().evaluate(
                 getDomainContext(), SecurityFactory.getInstance().getExecutePermission(), PreferencesDialog.class).isAccepted());
     preferencesItem.setOnAction(e -> PreferencesDialog.show());
 
-    discardItem.setGraphic(Fx.createImageView("reload"));
+    discardItem.setGraphic(Fx.createGraphic("reload"));
     discardItem.setOnAction(e -> loadRepository());
 
-    exitItem.setGraphic(Fx.createImageView("exit"));
+    exitItem.setGraphic(Fx.createGraphic("exit"));
     exitItem.setOnAction(e -> exit());
 
-    helpItem.setGraphic(Fx.createImageView("help"));
+    helpItem.setGraphic(Fx.createGraphic("help"));
     helpItem.setOnAction(e -> help());
 
-    aboutItem.setGraphic(Fx.createImageView("about"));
+    aboutItem.setGraphic(Fx.createGraphic("about"));
     aboutItem.setOnAction(e -> AboutView.showDialog());
 
     bundleEditor = Fx.load(BundleEditor.class);

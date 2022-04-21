@@ -4,14 +4,14 @@
 
 package org.tentackle.bundlemonkey.gui;
 
-import org.tentackle.fx.DefaultImageProvider;
-import org.tentackle.fx.ImageProviderService;
+import org.tentackle.fx.GraphicProviderService;
+import org.tentackle.fx.ImageGraphicProvider;
 
 /**
  * Application specific image provider.
  */
-@ImageProviderService(BundleMonkeyImageProvider.REALM)
-public class BundleMonkeyImageProvider extends DefaultImageProvider {
+@GraphicProviderService(BundleMonkeyGraphicProvider.REALM)
+public class BundleMonkeyGraphicProvider extends ImageGraphicProvider {
 
   /**
    * The application's image realm.

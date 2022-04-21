@@ -49,10 +49,10 @@ public class PreferencesDialog extends AbstractFxController {
   private void initialize() {
     generalTab.setContent(createTab(GeneralPreferences.class));
 
-    cancelButton.setGraphic(Fx.createImageView("cancel"));
+    cancelButton.setGraphic(Fx.createGraphic("cancel"));
     cancelButton.setOnAction(e -> getStage().hide());
 
-    saveButton.setGraphic(Fx.createImageView("save"));
+    saveButton.setGraphic(Fx.createGraphic("save"));
     saveButton.setOnAction(e -> {
       try {
         BundleMonkeyPreferences.getInstance().sync();

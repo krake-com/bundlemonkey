@@ -32,8 +32,8 @@ import org.tentackle.fx.table.TableConfigurationProviderService;
 public class BundleNodeTableConfigurationProvider extends DefaultTableConfigurationProvider<BundleNode> {
 
   @Override
-  protected TableConfiguration<BundleNode> createTableConfiguration(Class<BundleNode> clazz, String name) {
-    return new BundleNodeTableConfiguration<>(clazz, name) {
+  protected TableConfiguration<BundleNode> createEmptyTableConfiguration(String name) {
+    return new BundleNodeTableConfiguration<>(getElementClass(), name) {
 
       @Override
       @SuppressWarnings({ "unchecked", "rawtypes" })

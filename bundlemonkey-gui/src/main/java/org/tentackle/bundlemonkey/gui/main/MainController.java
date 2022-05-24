@@ -35,6 +35,7 @@ import org.tentackle.bundlemonkey.gui.refactor.RenamePackageDialog;
 import org.tentackle.common.StringHelper;
 import org.tentackle.common.TentackleRuntimeException;
 import org.tentackle.fx.AbstractFxController;
+import org.tentackle.fx.BundleMonkeyHelper;
 import org.tentackle.fx.Fx;
 import org.tentackle.fx.FxControllerService;
 import org.tentackle.fx.component.FxButton;
@@ -129,6 +130,7 @@ public class MainController extends AbstractFxController implements DomainContex
   private TreeItem<BundleNode> foundItem;                         // != null if current found item
   private int foundIndex;                                         // index in bundleTreeItems if foundItem != null
   private String foundLocale;                                     // != null if current found translation
+  private NavigationServer navigationServer;                      // bundle navigation triggered by client
 
 
   @Override
@@ -143,21 +145,21 @@ public class MainController extends AbstractFxController implements DomainContex
     localeSelector = Fx.load(LocaleSelector.class);
     innerBorderPane.setTop(localeSelector.getView());
 
-    preferencesItem.setGraphic(Fx.createImageView("preferences"));
+    preferencesItem.setGraphic(Fx.createGraphic("preferences"));
     preferencesItem.setDisable(!SecurityFactory.getInstance().getSecurityManager().evaluate(
                 getDomainContext(), SecurityFactory.getInstance().getExecutePermission(), PreferencesDialog.class).isAccepted());
     preferencesItem.setOnAction(e -> PreferencesDialog.show());
 
-    discardItem.setGraphic(Fx.createImageView("reload"));
+    discardItem.setGraphic(Fx.createGraphic("reload"));
     discardItem.setOnAction(e -> loadRepository());
 
-    exitItem.setGraphic(Fx.createImageView("exit"));
+    exitItem.setGraphic(Fx.createGraphic("exit"));
     exitItem.setOnAction(e -> exit());
 
-    helpItem.setGraphic(Fx.createImageView("help"));
+    helpItem.setGraphic(Fx.createGraphic("help"));
     helpItem.setOnAction(e -> help());
 
-    aboutItem.setGraphic(Fx.createImageView("about"));
+    aboutItem.setGraphic(Fx.createGraphic("about"));
     aboutItem.setOnAction(e -> AboutView.showDialog());
 
     bundleEditor = Fx.load(BundleEditor.class);
@@ -192,6 +194,8 @@ public class MainController extends AbstractFxController implements DomainContex
     ucLcButton.setTooltip(new Tooltip(resources.getString("toggle case sensitivity")));
 
     saveButton.setOnAction(e -> save());
+
+    navigationServer = new NavigationServer(this::navigateViaHierarchyDump);
   }
 
   @Override
@@ -278,7 +282,12 @@ public class MainController extends AbstractFxController implements DomainContex
     Fx.yes(bundleRepository.getModificationCount() != 0 ?
            resources.getString("ExitModifiedAction") :
            resources.getString("ExitAction"),
-           false, Platform::exit);
+           false, () -> {
+          if (navigationServer != null) {
+            navigationServer.shutdown();
+          }
+          Platform.exit();
+        });
   }
 
 
@@ -287,11 +296,11 @@ public class MainController extends AbstractFxController implements DomainContex
    */
   private void configureContextMenu() {
     ContextMenu contextMenu = bundlesTreeTable.getContextMenu();
-    MenuItem renameBundleItem = new MenuItem();
+    MenuItem renameBundleItem = Fx.create(MenuItem.class);
     renameBundleItem.setText(resources.getString("rename bundle"));
     renameBundleItem.setOnAction(e -> renameBundle());
     contextMenu.getItems().add(0, renameBundleItem);
-    MenuItem renamePackageItem = new MenuItem();
+    MenuItem renamePackageItem = Fx.create(MenuItem.class);
     renamePackageItem.setText(resources.getString("rename package"));
     renamePackageItem.setOnAction(e -> renamePackage());
     contextMenu.getItems().add(0, renamePackageItem);
@@ -676,6 +685,98 @@ public class MainController extends AbstractFxController implements DomainContex
         }
       }).start();
     }
+  }
+
+  private void navigateViaHierarchyDump(String hierarchyDump) {
+    Platform.runLater(() -> {
+      Holder<String> localeStr = new Holder<>();
+      Holder<String> textValue = new Holder<>();
+      Holder<String> bundleName = new Holder<>();
+      int ndx1 = hierarchyDump.indexOf(BundleMonkeyHelper.LOCALE_PREFIX);
+      if (ndx1 >= 0) {
+        int ndx2 = hierarchyDump.indexOf(BundleMonkeyHelper.LOCALE_POSTFIX, ndx1);
+        if (ndx2 > ndx1) {
+          localeStr.accept(hierarchyDump.substring(ndx1 + BundleMonkeyHelper.LOCALE_PREFIX.length(), ndx2));
+          int ndx3 = hierarchyDump.indexOf('\n', ndx2);   // skip first line
+          if (ndx3 > ndx2) {
+            hierarchyDump.substring(ndx3).lines().forEach(line -> {
+              if (textValue.get() == null) {
+                int ndx4 = line.indexOf("'");
+                if (ndx4 >= 0) {
+                  int ndx5 = line.indexOf("'", ndx4 + 1);
+                  if (ndx5 > ndx4) {
+                    textValue.accept(line.substring(ndx4 + 1, ndx5));
+                  }
+                }
+              }
+              if (bundleName.get() == null) {
+                int ndx4 = line.indexOf(BundleMonkeyHelper.BUNDLENAME_PREFIX);
+                if (ndx4 >= 0) {
+                  int ndx5 = line.indexOf(BundleMonkeyHelper.BUNDLENAME_POSTFIX, ndx4 + BundleMonkeyHelper.BUNDLENAME_PREFIX.length());
+                  if (ndx5 > ndx4) {
+                    bundleName.accept(line.substring(ndx4 + BundleMonkeyHelper.BUNDLENAME_PREFIX.length(), ndx5));
+                  }
+                }
+              }
+            });
+          }
+        }
+      }
+
+      if (bundleName.get() != null) {
+        Platform.runLater(() -> {
+          Holder<TreeItem<BundleNode>> foundItem = new Holder<>();
+          Holder<String> foundLocale = new Holder<>();
+          for (TreeItem<BundleNode> treeItem : bundlesTreeTable.getTreeItems()) {
+            if (bundleName.get().equals(treeItem.getValue().getName())) {
+              bundlesTreeTable.getSelectionModel().select(treeItem);
+              treeItem.setExpanded(true);
+              foundItem.accept(treeItem);
+              if (textValue.get() != null) {
+                // search for explicit translations first
+                for (TreeItem<BundleNode> child : treeItem.getChildren()) {
+                  BundleKey bundleKey = (BundleKey) child.getValue();
+                  for (BundleTranslation translation : bundleKey.getTranslations().values()) {
+                    if (!translation.getLocale().isEmpty() &&
+                        localeStr.get().startsWith(translation.getLocale()) &&
+                        textValue.get().equals(translation.getValue())) {
+                      bundlesTreeTable.getSelectionModel().select(child);
+                      foundItem.accept(child);
+                      foundLocale.accept(translation.getLocale());
+                      break;
+                    }
+                  }
+                }
+                if (foundLocale.get() == null) {
+                  // search for fallback locale
+                  for (TreeItem<BundleNode> child : treeItem.getChildren()) {
+                    BundleKey bundleKey = (BundleKey) child.getValue();
+                    for (BundleTranslation translation : bundleKey.getTranslations().values()) {
+                      if (translation.getLocale().isEmpty() && textValue.get().equals(translation.getValue())) {
+                        bundlesTreeTable.getSelectionModel().select(child);
+                        foundItem.accept(child);
+                        foundLocale.accept(translation.getLocale());
+                        break;
+                      }
+                    }
+                  }
+                }
+              }
+              if (foundItem.get() != null) {
+                Platform.runLater(() -> {
+                  bundlesTreeTable.scrollToCentered(bundlesTreeTable.getSelectionModel().getSelectedIndex());
+                  bundleEditor.setBundleNode(foundItem.get().getValue());
+                  if (foundLocale.get() != null) {
+                    Platform.runLater(() -> bundleEditor.selectLocale(foundLocale.get()));
+                  }
+                });
+              }
+              break;
+            }
+          }
+        });
+      }
+    });
   }
 
 }

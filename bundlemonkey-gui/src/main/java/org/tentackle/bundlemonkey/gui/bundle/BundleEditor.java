@@ -58,13 +58,13 @@ public class BundleEditor extends AbstractFxController {
   public BundleEditor(ResourceBundle resources) {
     this.resources = resources;
     translationEditors = new LinkedHashMap<>();
-    emptyLabel = Fx.createNode(Label.class);
+    emptyLabel = Fx.create(Label.class);
     emptyLabel.setText(resources.getString("please select a bundle key"));
-    propertyPane = Fx.createNode(VBox.class);
+    propertyPane = Fx.create(VBox.class);
     propertyPane.setVisible(false);
-    scrollPane = Fx.createNode(ScrollPane.class);
+    scrollPane = Fx.create(ScrollPane.class);
     scrollPane.setFitToWidth(true);
-    stackPane = Fx.createNode(StackPane.class);
+    stackPane = Fx.create(StackPane.class);
     stackPane.getChildren().addAll(emptyLabel, propertyPane);
     scrollPane.setContent(stackPane);
     setView(scrollPane);

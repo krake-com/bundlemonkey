@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 
-<BorderPane fx:id="outerBorderPane" style="-fx-background-color: WHITE;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.tentackle.bundlemonkey.gui.main.MainController">
+<BorderPane fx:id="outerBorderPane" style="-fx-background-color: WHITE;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.tentackle.bundlemonkey.gui.main.MainController">
    <top>
       <MenuBar BorderPane.alignment="CENTER">
         <menus>
@@ -60,7 +60,7 @@
                   <Insets />
                </HBox.margin>
             </TextField>
-            <ToggleButton fx:id="ucLcButton" mnemonicParsing="false" text="%Cc" />
+            <ToggleButton fx:id="ucLcButton" mnemonicParsing="false" />
             <Label fx:id="modificationLabel" alignment="BASELINE_RIGHT" maxWidth="1.7976931348623157E308" text="xxx mods" HBox.hgrow="ALWAYS">
                <HBox.margin>
                   <Insets left="15.0" />

@@ -57,11 +57,8 @@ public class LocaleSelector extends AbstractFxController implements BundlesUpdat
   @FXML
   public void initialize() {
     addLocaleButton.setOnAction(event -> addLocaleDialog());
-  }
-
-  @Override
-  public void configure() {
     addLocaleButton.setTooltip(new Tooltip(resources.getString("add_locale_tt")));
+    addLocaleButton.setGraphic(Fx.createGraphic("flag"));
   }
 
   /**

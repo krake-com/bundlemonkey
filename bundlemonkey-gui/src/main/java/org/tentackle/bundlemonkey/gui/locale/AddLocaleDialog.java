@@ -78,7 +78,9 @@ public class AddLocaleDialog extends AbstractFxController {
   @FXML
   private void initialize() {
     cancelButton.setOnAction(event -> getStage().close());
+    cancelButton.setGraphic(Fx.createGraphic("cancel"));
     addButton.setOnAction(event -> addLocale());
+    addButton.setGraphic(Fx.createGraphic("add"));
     localeField.setOnAction(event -> addButton.doClick());
   }
 

@@ -4,18 +4,25 @@
 
 package org.tentackle.bundlemonkey.gui;
 
+import org.tentackle.fx.DefaultGraphicProvider;
 import org.tentackle.fx.GraphicProviderService;
-import org.tentackle.fx.ImageGraphicProvider;
+
+import java.util.Map;
 
 /**
- * Application specific image provider.
+ * Extended default provider to for all ikonli icons.
  */
-@GraphicProviderService(BundleMonkeyGraphicProvider.REALM)
-public class BundleMonkeyGraphicProvider extends ImageGraphicProvider {
+@GraphicProviderService
+public class BundleMonkeyGraphicProvider extends DefaultGraphicProvider {
 
-  /**
-   * The application's image realm.
-   */
-  public static final String REALM = "BundleMonkey";
+  @Override
+  protected Map<String, String> createNameMap() {
+    Map<String, String> nameMap = super.createNameMap();
+
+    nameMap.put("flag", "mdi2d-diving-scuba-flag");
+    nameMap.put("uclc", "mdi2f-format-letter-case");
+
+    return nameMap;
+  }
 
 }

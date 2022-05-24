@@ -191,9 +191,11 @@ public class MainController extends AbstractFxController implements DomainContex
 
     ucLcButton.setBindable(false);
     ucLcButton.setOnAction(event -> lastFilter = null);
+    ucLcButton.setGraphic(Fx.createGraphic("uclc"));
     ucLcButton.setTooltip(new Tooltip(resources.getString("toggle case sensitivity")));
 
     saveButton.setOnAction(e -> save());
+    saveButton.setGraphic(Fx.createGraphic("save"));
 
     navigationServer = new NavigationServer(this::navigateViaHierarchyDump);
   }

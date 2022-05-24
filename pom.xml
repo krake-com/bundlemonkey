@@ -4,7 +4,7 @@
 
   <groupId>org.tentackle</groupId>
   <artifactId>bundlemonkey</artifactId>
-  <version>1.0.1</version>
+  <version>1.0.2</version>
   <packaging>pom</packaging>
 
   <name>BundleMonkey Parent</name>
@@ -47,7 +47,7 @@
     <project.build.resourceEncoding>UTF-8</project.build.resourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
-    <tentackle.version>17.9.0.0</tentackle.version>
+    <tentackle.version>17.10.0.0</tentackle.version>
     <tentackle.serviceDir>${project.build.directory}/generated-resources/services</tentackle.serviceDir>
     <tentackle.testServiceDir>${project.build.directory}/generated-test-resources/services</tentackle.testServiceDir>
     <tentackle.manifestDirectory>${project.build.directory}/generated-resources/manifest</tentackle.manifestDirectory>
@@ -194,7 +194,7 @@
           <version>3.10.1</version>
           <configuration>
             <encoding>UTF-8</encoding>
-            <release>18</release>
+            <release>17</release>
             <showWarnings>true</showWarnings>
             <showDeprecation>true</showDeprecation>
             <compilerArgs>

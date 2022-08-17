@@ -17,7 +17,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.WindowEvent;
 
-import org.tentackle.app.AbstractApplication;
+import org.tentackle.app.Application;
 import org.tentackle.bind.Bindable;
 import org.tentackle.bundlemonkey.common.BundleKey;
 import org.tentackle.bundlemonkey.common.BundleMonkeyPreferences;
@@ -135,7 +135,7 @@ public class MainController extends AbstractFxController implements DomainContex
 
   @Override
   public DomainContext getDomainContext() {
-    return AbstractApplication.getRunningApplication().getDomainContext();
+    return Application.getInstance().getDomainContext();
   }
 
   @FXML

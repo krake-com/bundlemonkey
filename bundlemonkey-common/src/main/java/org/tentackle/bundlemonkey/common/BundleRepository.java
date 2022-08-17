@@ -18,7 +18,7 @@
 
 package org.tentackle.bundlemonkey.common;
 
-import org.tentackle.app.AbstractApplication;
+import org.tentackle.app.Application;
 import org.tentackle.i18n.pdo.StoredBundle;
 import org.tentackle.i18n.pdo.StoredBundleKey;
 import org.tentackle.pdo.DomainContext;
@@ -51,7 +51,7 @@ public class BundleRepository implements DomainContextProvider {
   private int missingCount;                                 // -1 if pending computation
 
   public BundleRepository() {
-    context = AbstractApplication.getRunningApplication().getDomainContext();
+    context = Application.getInstance().getDomainContext();
     listeners = new ArrayList<>();
     bundleNames = new TreeMap<>();
     prefs = Preferences.userNodeForPackage(getClass());

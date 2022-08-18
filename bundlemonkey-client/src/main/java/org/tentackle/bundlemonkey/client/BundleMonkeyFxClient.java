@@ -13,8 +13,8 @@ import org.tentackle.bundlemonkey.gui.main.MainController;
 import org.tentackle.fx.rdc.app.DesktopApplication;
 import org.tentackle.fx.rdc.app.FxApplication;
 import org.tentackle.i18n.StoredBundleFactory;
+import org.tentackle.misc.Identifiable;
 import org.tentackle.pdo.DomainContext;
-import org.tentackle.pdo.PersistentDomainObject;
 import org.tentackle.security.SecurityFactory;
 import org.tentackle.session.ModificationTracker;
 
@@ -76,7 +76,7 @@ public class BundleMonkeyFxClient extends DesktopApplication<MainController> {
   }
 
   @Override
-  public <U extends PersistentDomainObject<U>> U getUser(DomainContext context, long userId) {
+  public <U extends Identifiable> U getUser(DomainContext context, long userId) {
     return null;    // no users, security manager disabled
   }
 

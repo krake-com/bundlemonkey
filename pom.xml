@@ -106,8 +106,13 @@
       <dependency>
         <groupId>org.testng</groupId>
         <artifactId>testng</artifactId>
-        <version>7.5</version>
-        <scope>test</scope>
+        <version>7.6.1</version>
+      </dependency>
+      <dependency>
+        <!-- logger binder for testng -->
+        <groupId>org.slf4j</groupId>
+        <artifactId>slf4j-simple</artifactId>
+        <version>1.7.36</version>
       </dependency>
 
     </dependencies>
@@ -117,6 +122,12 @@
     <dependency>
       <groupId>org.testng</groupId>
       <artifactId>testng</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>slf4j-simple</artifactId>
+      <scope>test</scope>
     </dependency>
   </dependencies>
 
@@ -225,7 +236,7 @@
               <dependency>    <!-- necessary for fx-rdc processors because deps are not recognized here -->
                 <groupId>org.openjfx</groupId>
                 <artifactId>javafx-controls</artifactId>
-                <version>18</version>
+                <version>18.0.2</version>
               </dependency>
             </annotationProcessorPaths>
           </configuration>
@@ -234,7 +245,7 @@
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-resources-plugin</artifactId>
-          <version>3.2.0</version>
+          <version>3.3.0</version>
           <configuration>
             <encoding>UTF-8</encoding>
             <propertiesEncoding>UTF-8</propertiesEncoding>
@@ -288,13 +299,13 @@
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-javadoc-plugin</artifactId>
-          <version>3.4.0</version>
+          <version>3.4.1</version>
         </plugin>
 
         <plugin>
           <groupId>org.codehaus.mojo</groupId>
           <artifactId>keytool-maven-plugin</artifactId>
-          <version>1.5</version>
+          <version>1.6</version>
         </plugin>
       </plugins>
     </pluginManagement>

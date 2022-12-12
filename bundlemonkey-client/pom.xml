@@ -35,14 +35,9 @@
     </dependency>
     <dependency>
       <groupId>org.tentackle</groupId>
-      <artifactId>tentackle-log-slf4j</artifactId>
+      <artifactId>tentackle-log-log4j2v</artifactId>
     </dependency>
 
-    <!-- runtime only -->
-    <dependency>
-      <groupId>ch.qos.logback</groupId>
-      <artifactId>logback-classic</artifactId>
-    </dependency>
   </dependencies>
 
   <build>

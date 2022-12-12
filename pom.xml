@@ -94,25 +94,17 @@
         <scope>import</scope>
       </dependency>
 
-      <!-- runtime dependencies -->
-      <dependency>
-        <groupId>ch.qos.logback</groupId>
-        <artifactId>logback-classic</artifactId>
-        <version>1.2.11</version>
-        <scope>runtime</scope>
-      </dependency>
-
       <!-- test dependencies -->
       <dependency>
         <groupId>org.testng</groupId>
         <artifactId>testng</artifactId>
-        <version>7.6.1</version>
+        <version>7.7.0</version>
       </dependency>
       <dependency>
         <!-- logger binder for testng -->
         <groupId>org.slf4j</groupId>
         <artifactId>slf4j-simple</artifactId>
-        <version>1.7.36</version>
+        <version>2.0.5</version>
       </dependency>
 
     </dependencies>

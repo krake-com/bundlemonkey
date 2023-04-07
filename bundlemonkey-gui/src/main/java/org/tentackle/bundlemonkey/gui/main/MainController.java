@@ -57,6 +57,7 @@ import java.net.URI;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.Locale;
 import java.util.Objects;
 import java.util.ResourceBundle;
 
@@ -325,7 +326,7 @@ public class MainController extends AbstractFxController implements DomainContex
       lastFilter = filter;
       if (!StringHelper.isAllWhitespace(filter)) {
         boolean ucLcSensitive = ucLcButton.isSelected();
-        String lcFilter = ucLcSensitive ? filter : filter.toUpperCase();
+        String lcFilter = ucLcSensitive ? filter : filter.toUpperCase(Locale.ROOT);
         boolean not = false;
         if (lcFilter.startsWith("!") || lcFilter.startsWith("-")) {
           not = true;
@@ -333,7 +334,7 @@ public class MainController extends AbstractFxController implements DomainContex
         }
         List<BundleNode> foundNodes = new ArrayList<>();
         for (BundleNode bundleNode : bundleRepository.getBundles()) {
-          String name = ucLcSensitive ? bundleNode.getName() : bundleNode.getName().toUpperCase();
+          String name = ucLcSensitive ? bundleNode.getName() : bundleNode.getName().toUpperCase(Locale.ROOT);
           if (name.contains(lcFilter) ^ not) {
             foundNodes.add(bundleNode);
           }
@@ -399,7 +400,7 @@ public class MainController extends AbstractFxController implements DomainContex
    * @return true if found
    */
   private boolean runFind(TreeItem<BundleNode> item, int itemNdx, String locale, Boolean next) {
-    String ucFind = ucLcButton.isSelected() ? find : find.toUpperCase();
+    String ucFind = ucLcButton.isSelected() ? find : find.toUpperCase(Locale.ROOT);
     if (item.isLeaf()) {
       List<String> locales = new ArrayList<>(bundleRepository.getLocales());
       if (checkTranslations(item, ucFind, locale == null ? -1 : locales.indexOf(locale), next)) {
@@ -429,7 +430,7 @@ public class MainController extends AbstractFxController implements DomainContex
       item = itemHolder.get();
       String name = item.getValue().getName();
       if (!ucLcButton.isSelected()) {
-        name = name.toUpperCase();
+        name = name.toUpperCase(Locale.ROOT);
       }
       if (name.contains(ucFind)) {
         foundIndex = itemNdx;
@@ -515,7 +516,7 @@ public class MainController extends AbstractFxController implements DomainContex
     if (translation != null) {
       String value = translation.getValue();
       if (!ucLcButton.isSelected()) {
-        value = value.toUpperCase();
+        value = value.toUpperCase(Locale.ROOT);
       }
       if (value.contains(ucFind)) {
         foundLocale = locale;

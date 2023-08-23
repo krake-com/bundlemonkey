@@ -4,15 +4,6 @@
 
 package org.tentackle.bundlemonkey.gui.prefs;
 
-import javafx.fxml.FXML;
-import javafx.geometry.Insets;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.scene.layout.BorderPane;
-import javafx.stage.Modality;
-import javafx.stage.Stage;
-
 import org.tentackle.bundlemonkey.common.BundleMonkeyPreferences;
 import org.tentackle.fx.AbstractFxController;
 import org.tentackle.fx.Fx;
@@ -21,6 +12,14 @@ import org.tentackle.fx.FxControllerService;
 import org.tentackle.fx.component.FxButton;
 import org.tentackle.fx.container.FxTab;
 
+import javafx.fxml.FXML;
+import javafx.geometry.Insets;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.layout.BorderPane;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 import java.util.ResourceBundle;
 import java.util.prefs.BackingStoreException;
 
@@ -58,7 +57,7 @@ public class PreferencesDialog extends AbstractFxController {
         BundleMonkeyPreferences.getInstance().sync();
       }
       catch (BackingStoreException ex) {
-        Fx.error(resources.getString("saveFailed"), ex);
+        Fx.error(getView(), resources.getString("saveFailed"), ex);
       }
       getStage().hide();
     });

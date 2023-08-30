@@ -288,7 +288,7 @@ public class MainController extends AbstractFxController implements DomainContex
           if (navigationServer != null) {
             navigationServer.shutdown();
           }
-          Platform.exit();
+          Fx.terminate();
         });
   }
 

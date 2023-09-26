@@ -8,7 +8,6 @@ import org.tentackle.bind.Bindable;
 import org.tentackle.common.Service;
 import org.tentackle.common.ServiceFactory;
 import org.tentackle.prefs.CompositePreferences;
-import org.tentackle.prefs.PersistedPreferencesFactory;
 
 
 interface BundleMonkeyPreferencesHolder {
@@ -21,6 +20,8 @@ interface BundleMonkeyPreferencesHolder {
 @Service(BundleMonkeyPreferences.class)    // defaults to self
 public class BundleMonkeyPreferences extends CompositePreferences {
 
+  /** dark mode. */
+  public static final String DARK_MODE = "darkMode";
 
   /** online help prefix. */
   public static final String HELP_URL = "helpURL";
@@ -33,7 +34,9 @@ public class BundleMonkeyPreferences extends CompositePreferences {
 
 
   public BundleMonkeyPreferences() {
-    super(PersistedPreferencesFactory.getInstance().isSystemOnly());
+    super(true);
+    // must be systemOnly since we forced userPrefs == systemPrefs in BundleMonkeyPreferencesFactory.
+    // otherwise, CompositePreferences#setString(key, val) would remove the key again.
   }
 
   /**
@@ -75,6 +78,16 @@ public class BundleMonkeyPreferences extends CompositePreferences {
   @Bindable
   public void setTranslationColumns(int columns) {
     setInteger(TRANSLATION_COLUMNS, columns);
+  }
+
+  @Bindable
+  public boolean isDarkMode() {
+    return getBoolean(DARK_MODE, false);
+  }
+
+  @Bindable
+  public void setDarkMode(boolean darkMode) {
+    setBoolean(DARK_MODE, darkMode);
   }
 
 }

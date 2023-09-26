@@ -62,7 +62,7 @@ public class RenamePackageDialog extends AbstractFxController {
         done.run();
       }
     });
-    stage.show();
+    Fx.show(stage);
     dialog.getContainer().updateView();
     dialog.newNameField.requestFocus();
   }

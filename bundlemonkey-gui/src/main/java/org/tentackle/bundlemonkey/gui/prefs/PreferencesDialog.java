@@ -89,7 +89,7 @@ public class PreferencesDialog extends AbstractFxController {
     stage.setScene(scene);
     stage.setTitle(pp.resources.getString("preferences"));
     pp.getContainer().updateView();
-    stage.show();
+    Fx.show(stage);
   }
 
 }

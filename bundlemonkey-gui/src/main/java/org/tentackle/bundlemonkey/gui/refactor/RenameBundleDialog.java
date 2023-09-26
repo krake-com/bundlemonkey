@@ -65,7 +65,7 @@ public class RenameBundleDialog extends AbstractFxController {
         done.run();
       }
     });
-    stage.show();
+    Fx.show(stage);
     dialog.getContainer().updateView();
     dialog.newNameField.requestFocus();
     dialog.newNameField.positionCaret(dialog.newName.length());

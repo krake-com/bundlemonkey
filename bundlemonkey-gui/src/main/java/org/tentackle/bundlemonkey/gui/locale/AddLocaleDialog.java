@@ -53,7 +53,7 @@ public class AddLocaleDialog extends AbstractFxController {
     stage.setTitle(dialog.resources.getString("add locale"));
     Scene scene = Fx.createScene(dialog.getView());
     stage.setScene(scene);
-    stage.show();
+    Fx.show(stage);
   }
 
   @Bindable

@@ -160,7 +160,7 @@ public class MainController extends AbstractFxController implements DomainContex
     helpItem.setOnAction(e -> help());
 
     aboutItem.setGraphic(Fx.createGraphic("about"));
-    aboutItem.setOnAction(e -> AboutView.showDialog());
+    aboutItem.setOnAction(e -> AboutView.show(getView()));
 
     bundleEditor = Fx.load(BundleEditor.class);
     innerBorderPane.setRight(bundleEditor.getView());

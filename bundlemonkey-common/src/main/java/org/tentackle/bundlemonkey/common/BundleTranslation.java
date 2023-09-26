@@ -31,8 +31,8 @@ import java.util.Objects;
  */
 public class BundleTranslation implements Comparable<BundleTranslation>, ScopeConfigurator {
 
-  @SuppressWarnings("unchecked")
-  private static final Class<? extends ValidationScope>[] scopes = new Class[] { MandatoryScope.class };
+  @SuppressWarnings({"unchecked", "rawtypes"})
+  private static final Class<? extends ValidationScope>[] scopes = new Class[]{MandatoryScope.class};
 
   private final BundleKey bundleKey;
   private final String locale;

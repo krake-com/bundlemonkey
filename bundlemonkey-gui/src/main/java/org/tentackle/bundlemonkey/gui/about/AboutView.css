@@ -1,4 +1,4 @@
-.root {
+#aboutpane {
   -fx-background-image: url("/org/tentackle/bundlemonkey/gui/images/login-and-about.png");
   -fx-background-size: 550 300;
   -fx-background-position: left;
@@ -6,4 +6,11 @@
   -fx-background-color: white;
   -fx-min-width: 600;
   -fx-min-height: 300;
+  -fx-border-style: solid;
+}
+
+#closeButton {
+  -fx-padding: 20 5 5 5;
+  -fx-border-insets: 20 5 5 5;
+  -fx-background-insets: 20 5 5 5;
 }

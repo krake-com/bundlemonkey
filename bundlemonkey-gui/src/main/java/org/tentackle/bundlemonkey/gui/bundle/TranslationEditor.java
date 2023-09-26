@@ -18,8 +18,6 @@
 
 package org.tentackle.bundlemonkey.gui.bundle;
 
-import javafx.fxml.FXML;
-
 import org.tentackle.bind.Bindable;
 import org.tentackle.bundlemonkey.common.BundleMonkeyPreferences;
 import org.tentackle.bundlemonkey.common.BundleTranslation;
@@ -29,6 +27,7 @@ import org.tentackle.fx.FxControllerService;
 import org.tentackle.fx.component.FxLabel;
 import org.tentackle.fx.component.FxTextArea;
 
+import javafx.fxml.FXML;
 import java.util.Objects;
 import java.util.ResourceBundle;
 
@@ -56,7 +55,7 @@ public class TranslationEditor extends AbstractFxController {
   @FXML
   public void initialize() {
     updatePreferredSizes();
-    BundleMonkeyPreferences.getInstance().getUserPrefs().addPreferenceChangeListener(evt -> {
+    BundleMonkeyPreferences.getInstance().getSystemPrefs().addPreferenceChangeListener(evt -> {
       switch (evt.getKey()) {
         case BundleMonkeyPreferences.TRANSLATION_ROWS:
         case BundleMonkeyPreferences.TRANSLATION_COLUMNS:

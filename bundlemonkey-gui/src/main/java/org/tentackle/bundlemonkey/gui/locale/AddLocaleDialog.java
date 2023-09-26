@@ -18,11 +18,6 @@
 
 package org.tentackle.bundlemonkey.gui.locale;
 
-import javafx.fxml.FXML;
-import javafx.scene.Scene;
-import javafx.stage.Modality;
-import javafx.stage.Stage;
-
 import org.tentackle.bind.Bindable;
 import org.tentackle.common.StringHelper;
 import org.tentackle.fx.AbstractFxController;
@@ -31,6 +26,10 @@ import org.tentackle.fx.FxControllerService;
 import org.tentackle.fx.component.FxButton;
 import org.tentackle.fx.component.FxTextField;
 
+import javafx.fxml.FXML;
+import javafx.scene.Scene;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 import java.text.MessageFormat;
 import java.util.Locale;
 import java.util.ResourceBundle;
@@ -54,7 +53,7 @@ public class AddLocaleDialog extends AbstractFxController {
     stage.setTitle(dialog.resources.getString("add locale"));
     Scene scene = Fx.createScene(dialog.getView());
     stage.setScene(scene);
-    stage.show();
+    Fx.show(stage);
   }
 
   @Bindable
@@ -119,13 +118,13 @@ public class AddLocaleDialog extends AbstractFxController {
           }
         }
         if (found != null) {
-          Fx.yes(MessageFormat.format(resources.getString("add locale {0}?"), loc), false,
+          Fx.yes(getView(), MessageFormat.format(resources.getString("add locale {0}?"), loc), false,
                  () -> localeAdder.accept(loc.toString()));
           getStage().close();
           return;
         }
       }
-      Fx.error(MessageFormat.format(resources.getString("invalid locale {0}"), locale));
+      Fx.error(getView(), MessageFormat.format(resources.getString("invalid locale {0}"), locale));
     }
   }
 

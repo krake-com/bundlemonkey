@@ -4,10 +4,11 @@
 
 package org.tentackle.bundlemonkey.gui.prefs;
 
-import javafx.fxml.FXML;
-
 import org.tentackle.fx.FxControllerService;
+import org.tentackle.fx.component.FxCheckBox;
 import org.tentackle.fx.component.FxTextField;
+
+import javafx.fxml.FXML;
 
 /**
  * Tab for general preferences.
@@ -23,5 +24,8 @@ public class GeneralPreferences extends AbstractPreferencesTabController {
 
   @FXML
   private FxTextField prefTranslationColumns;
+
+  @FXML
+  private FxCheckBox prefDarkMode;
 
 }

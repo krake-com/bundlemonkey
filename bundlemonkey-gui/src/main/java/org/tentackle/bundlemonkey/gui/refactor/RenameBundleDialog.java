@@ -18,11 +18,6 @@
 
 package org.tentackle.bundlemonkey.gui.refactor;
 
-import javafx.fxml.FXML;
-import javafx.scene.Scene;
-import javafx.stage.Modality;
-import javafx.stage.Stage;
-
 import org.tentackle.bind.Bindable;
 import org.tentackle.bundlemonkey.common.BundleName;
 import org.tentackle.common.StringHelper;
@@ -34,6 +29,10 @@ import org.tentackle.fx.component.FxTextField;
 import org.tentackle.reflect.ReflectionHelper;
 import org.tentackle.session.ConstraintException;
 
+import javafx.fxml.FXML;
+import javafx.scene.Scene;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 import java.text.MessageFormat;
 import java.util.Objects;
 import java.util.ResourceBundle;
@@ -66,7 +65,7 @@ public class RenameBundleDialog extends AbstractFxController {
         done.run();
       }
     });
-    stage.show();
+    Fx.show(stage);
     dialog.getContainer().updateView();
     dialog.newNameField.requestFocus();
     dialog.newNameField.positionCaret(dialog.newName.length());
@@ -110,11 +109,11 @@ public class RenameBundleDialog extends AbstractFxController {
         done = true;
       }
       catch (ConstraintException cx) {
-        Fx.error(MessageFormat.format(resources.getString("bundle {0} already exists"), newName));
+        Fx.error(getView(), MessageFormat.format(resources.getString("bundle {0} already exists"), newName));
       }
     }
     else {
-      Fx.error(MessageFormat.format(resources.getString("not a valid java name: {0}"), newName));
+      Fx.error(getView(), MessageFormat.format(resources.getString("not a valid java name: {0}"), newName));
     }
     getStage().close();
   }

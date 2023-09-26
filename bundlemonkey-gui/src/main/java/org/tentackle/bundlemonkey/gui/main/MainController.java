@@ -4,19 +4,6 @@
 
 package org.tentackle.bundlemonkey.gui.main;
 
-import javafx.application.Platform;
-import javafx.collections.ListChangeListener;
-import javafx.fxml.FXML;
-import javafx.scene.control.ContextMenu;
-import javafx.scene.control.MenuItem;
-import javafx.scene.control.Tooltip;
-import javafx.scene.control.TreeItem;
-import javafx.scene.control.TreeTableRow;
-import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyEvent;
-import javafx.scene.layout.BorderPane;
-import javafx.stage.WindowEvent;
-
 import org.tentackle.app.Application;
 import org.tentackle.bind.Bindable;
 import org.tentackle.bundlemonkey.common.BundleKey;
@@ -51,6 +38,18 @@ import org.tentackle.pdo.DomainContextProvider;
 import org.tentackle.reflect.ReflectionHelper;
 import org.tentackle.security.SecurityFactory;
 
+import javafx.application.Platform;
+import javafx.collections.ListChangeListener;
+import javafx.fxml.FXML;
+import javafx.scene.control.ContextMenu;
+import javafx.scene.control.MenuItem;
+import javafx.scene.control.Tooltip;
+import javafx.scene.control.TreeItem;
+import javafx.scene.control.TreeTableRow;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.BorderPane;
+import javafx.stage.WindowEvent;
 import java.awt.Desktop;
 import java.io.IOException;
 import java.net.URI;
@@ -161,7 +160,7 @@ public class MainController extends AbstractFxController implements DomainContex
     helpItem.setOnAction(e -> help());
 
     aboutItem.setGraphic(Fx.createGraphic("about"));
-    aboutItem.setOnAction(e -> AboutView.showDialog());
+    aboutItem.setOnAction(e -> AboutView.show(getView()));
 
     bundleEditor = Fx.load(BundleEditor.class);
     innerBorderPane.setRight(bundleEditor.getView());
@@ -282,14 +281,14 @@ public class MainController extends AbstractFxController implements DomainContex
    * Asks the user whether to exit the application and does so if yes.
    */
   public void exit() {
-    Fx.yes(bundleRepository.getModificationCount() != 0 ?
+    Fx.yes(getView(), bundleRepository.getModificationCount() != 0 ?
            resources.getString("ExitModifiedAction") :
            resources.getString("ExitAction"),
            false, () -> {
           if (navigationServer != null) {
             navigationServer.shutdown();
           }
-          Platform.exit();
+          Fx.terminate();
         });
   }
 
@@ -675,7 +674,7 @@ public class MainController extends AbstractFxController implements DomainContex
   private void help() {
     String helpUrl = BundleMonkeyPreferences.getInstance().getHelpUrl();
     if (StringHelper.isAllWhitespace(helpUrl)) {
-      Fx.info("Help URL not configured. Please edit the Preferences!");
+      Fx.info(getView(), "Help URL not configured. Please edit the Preferences!");
     }
     else {
       // extra thread because Desktop blocks FX thread

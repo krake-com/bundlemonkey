@@ -18,6 +18,7 @@
 
 package org.tentackle.bundlemonkey.gui.locale;
 
+import org.tentackle.app.Application;
 import org.tentackle.bind.Bindable;
 import org.tentackle.common.StringHelper;
 import org.tentackle.fx.AbstractFxController;
@@ -25,6 +26,7 @@ import org.tentackle.fx.Fx;
 import org.tentackle.fx.FxControllerService;
 import org.tentackle.fx.component.FxButton;
 import org.tentackle.fx.component.FxTextField;
+import org.tentackle.fx.rdc.app.DesktopApplication;
 
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
@@ -118,7 +120,8 @@ public class AddLocaleDialog extends AbstractFxController {
           }
         }
         if (found != null) {
-          Fx.yes(getView(), MessageFormat.format(resources.getString("add locale {0}?"), loc), false,
+          Fx.yes(((DesktopApplication<?>) Application.getInstance()).getMainController().getView(),
+                 MessageFormat.format(resources.getString("add locale {0}?"), loc), false,
                  () -> localeAdder.accept(loc.toString()));
           getStage().close();
           return;

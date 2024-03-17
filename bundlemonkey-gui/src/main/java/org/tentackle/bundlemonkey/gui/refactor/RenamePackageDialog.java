@@ -18,6 +18,7 @@
 
 package org.tentackle.bundlemonkey.gui.refactor;
 
+import org.tentackle.app.Application;
 import org.tentackle.bind.Bindable;
 import org.tentackle.bundlemonkey.common.BundleRepository;
 import org.tentackle.common.StringHelper;
@@ -26,6 +27,7 @@ import org.tentackle.fx.Fx;
 import org.tentackle.fx.FxControllerService;
 import org.tentackle.fx.component.FxButton;
 import org.tentackle.fx.component.FxTextField;
+import org.tentackle.fx.rdc.app.DesktopApplication;
 import org.tentackle.session.ConstraintException;
 
 import javafx.fxml.FXML;
@@ -107,11 +109,13 @@ public class RenamePackageDialog extends AbstractFxController {
         done = true;
       }
       catch (ConstraintException cx) {
-        Fx.error(getView(), MessageFormat.format(resources.getString("cannot override existing bundles in package {0}"), newName));
+        Fx.error(((DesktopApplication<?>) Application.getInstance()).getMainController().getView(),
+                 MessageFormat.format(resources.getString("cannot override existing bundles in package {0}"), newName));
       }
     }
     else {
-      Fx.error(getView(), MessageFormat.format(resources.getString("not a valid package name: {0}"), newName));
+      Fx.error(((DesktopApplication<?>) Application.getInstance()).getMainController().getView(),
+               MessageFormat.format(resources.getString("not a valid package name: {0}"), newName));
     }
     getStage().close();
   }

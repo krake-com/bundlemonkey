@@ -60,17 +60,6 @@
           </archive>
         </configuration>
       </plugin>
-
-      <plugin>
-        <groupId>org.codehaus.mojo</groupId>
-        <artifactId>exec-maven-plugin</artifactId>
-        <configuration>
-          <mainClass>org.tentackle.bundlemonkey.client.BundleMonkeyFxClient</mainClass>
-          <arguments>
-            <argument>--statistics</argument>
-          </arguments>
-        </configuration>
-      </plugin>
     </plugins>
   </build>
 

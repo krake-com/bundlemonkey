@@ -47,7 +47,7 @@
     <project.build.resourceEncoding>UTF-8</project.build.resourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
-    <tentackle.version>21.0-SNAPSHOT</tentackle.version>
+    <tentackle.version>22.0-SNAPSHOT</tentackle.version>
     <tentackle.serviceDir>${project.build.directory}/generated-resources/services</tentackle.serviceDir>
     <tentackle.testServiceDir>${project.build.directory}/generated-test-resources/services</tentackle.testServiceDir>
     <tentackle.manifestDirectory>${project.build.directory}/generated-resources/manifest</tentackle.manifestDirectory>
@@ -194,7 +194,7 @@
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-compiler-plugin</artifactId>
-          <version>3.12.1</version>
+          <version>3.13.0</version>
           <configuration>
             <encoding>UTF-8</encoding>
             <release>21</release>
@@ -229,7 +229,7 @@
               <dependency>    <!-- necessary for fx-rdc processors because deps are not recognized here -->
                 <groupId>org.openjfx</groupId>
                 <artifactId>javafx-controls</artifactId>
-                <version>21</version>
+                <version>22</version>
               </dependency>
             </annotationProcessorPaths>
           </configuration>
@@ -257,7 +257,7 @@
             <dependency>
               <groupId>org.ow2.asm</groupId>
               <artifactId>asm</artifactId>
-              <version>9.5</version> <!-- Use newer version of ASM -->
+              <version>9.6</version> <!-- Use newer version of ASM -->
             </dependency>
           </dependencies>
         </plugin>
@@ -290,6 +290,12 @@
           <groupId>org.codehaus.mojo</groupId>
           <artifactId>keytool-maven-plugin</artifactId>
           <version>1.7</version>
+        </plugin>
+
+        <plugin>
+          <groupId>org.codehaus.mojo</groupId>
+          <artifactId>versions-maven-plugin</artifactId>
+          <version>2.16.2</version>
         </plugin>
       </plugins>
     </pluginManagement>

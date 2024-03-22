@@ -44,7 +44,7 @@
     <maven.build.timestamp.format>yyyy-MM-dd HH:mm</maven.build.timestamp.format>
     <maven.version>3.9.0</maven.version>
 
-    <javac.lint>all,-processing,-this-escape</javac.lint>
+    <javac.lint>all,-processing,-exports,-missing-explicit-ctor,-this-escape</javac.lint>
     <javac.version>22</javac.version>
     <ow2.asm.version>9.6</ow2.asm.version>
 

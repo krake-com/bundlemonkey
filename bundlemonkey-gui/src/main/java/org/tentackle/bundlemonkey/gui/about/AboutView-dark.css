@@ -10,7 +10,7 @@
 }
 
 #closeButton {
-  -fx-padding: 20 5 5 5;
-  -fx-border-insets: 20 5 5 5;
-  -fx-background-insets: 20 5 5 5;
+  -fx-padding: 5 5 5 5;
+  -fx-border-insets: 5 5 5 5;
+  -fx-background-insets: 5 5 5 5;
 }

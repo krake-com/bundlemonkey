@@ -20,9 +20,6 @@ interface BundleMonkeyPreferencesHolder {
 @Service(BundleMonkeyPreferences.class)    // defaults to self
 public class BundleMonkeyPreferences extends CompositePreferences {
 
-  /** dark mode. */
-  public static final String DARK_MODE = "darkMode";
-
   /** online help prefix. */
   public static final String HELP_URL = "helpURL";
 
@@ -78,16 +75,6 @@ public class BundleMonkeyPreferences extends CompositePreferences {
   @Bindable
   public void setTranslationColumns(int columns) {
     setInteger(TRANSLATION_COLUMNS, columns);
-  }
-
-  @Bindable
-  public boolean isDarkMode() {
-    return getBoolean(DARK_MODE, false);
-  }
-
-  @Bindable
-  public void setDarkMode(boolean darkMode) {
-    setBoolean(DARK_MODE, darkMode);
   }
 
 }

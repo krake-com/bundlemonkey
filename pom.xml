@@ -45,14 +45,14 @@
     <maven.version>3.9.0</maven.version>
 
     <javac.lint>all,-processing,-exports,-missing-explicit-ctor,-this-escape</javac.lint>
-    <javac.version>22</javac.version>
-    <ow2.asm.version>9.7</ow2.asm.version>
+    <javac.version>23</javac.version>
+    <ow2.asm.version>9.7.1</ow2.asm.version>
 
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.build.resourceEncoding>UTF-8</project.build.resourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
-    <tentackle.version>22.0-SNAPSHOT</tentackle.version>
+    <tentackle.version>23.0-SNAPSHOT</tentackle.version>
     <tentackle.serviceDir>${project.build.directory}/generated-resources/services</tentackle.serviceDir>
     <tentackle.testServiceDir>${project.build.directory}/generated-test-resources/services</tentackle.testServiceDir>
     <tentackle.manifestDirectory>${project.build.directory}/generated-resources/manifest</tentackle.manifestDirectory>

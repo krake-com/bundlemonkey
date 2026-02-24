@@ -6,8 +6,11 @@ package org.tentackle.bundlemonkey.client;
 
 import org.tentackle.fx.FxFactory;
 import org.tentackle.fx.FxUtilities;
+import org.tentackle.fx.ThemeUtilities;
 import org.tentackle.fx.rdc.app.LoginApplication;
 import org.tentackle.fx.rdc.login.Login;
+
+import javax.swing.text.Utilities;
 
 /**
  * Login FX application with specific CSS configuration.
@@ -18,7 +21,7 @@ public class BundleMonkeyLoginApplication extends LoginApplication {
   protected Login loadLoginController() {
     return FxFactory.getInstance().createController(
       BundleMonkeyLogin.class, null, null,
-      getClass().getResource(FxUtilities.getInstance().isDarkMode() ?
+      getClass().getResource(ThemeUtilities.getInstance().isDarkMode() ?
                                "/org/tentackle/bundlemonkey/client/BundleMonkeyLogin-dark.css" :
                                "/org/tentackle/bundlemonkey/client/BundleMonkeyLogin.css"));
   }

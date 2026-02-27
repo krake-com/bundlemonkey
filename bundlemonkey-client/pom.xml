@@ -21,6 +21,11 @@
 
     <dependency>
       <groupId>org.tentackle</groupId>
+      <artifactId>tentackle-fx-atlanta</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>org.tentackle</groupId>
       <artifactId>bundlemonkey-gui</artifactId>
       <version>${project.version}</version>
     </dependency>

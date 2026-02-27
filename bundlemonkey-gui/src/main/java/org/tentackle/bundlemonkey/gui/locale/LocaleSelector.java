@@ -112,7 +112,7 @@ public class LocaleSelector extends AbstractFxController implements BundlesUpdat
    * Shows the dialog to add a locale.
    */
   private void addLocaleDialog() {
-    AddLocaleDialog.show(this::addLocale);
+    AddLocaleDialog.show(getView(), this::addLocale);
   }
 
   /**

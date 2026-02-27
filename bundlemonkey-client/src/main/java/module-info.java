@@ -14,7 +14,7 @@ module org.tentackle.bundlemonkey.client {
   requires org.tentackle.fx.rdc;
   requires org.tentackle.i18n;
 
-  requires javafx.graphics;
+  requires org.tentackle.fx.atlanta;
 
   provides org.tentackle.common.ModuleHook with org.tentackle.bundlemonkey.client.service.Hook;
 

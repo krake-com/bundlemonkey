@@ -81,9 +81,11 @@ public class PreferencesDialog extends AbstractFxController {
 
   /**
    * Shows the modal preferences window.
+   *
+   * @param owner the owner window or node
    */
-  public static void show() {
-    Stage stage = Fx.createStage(Modality.APPLICATION_MODAL);
+  public static void show(Object owner) {
+    Stage stage = Fx.createStage(Modality.APPLICATION_MODAL, owner);
     PreferencesDialog pp = Fx.load(PreferencesDialog.class);
     Scene scene = Fx.createScene(pp.getView());
     stage.setScene(scene);

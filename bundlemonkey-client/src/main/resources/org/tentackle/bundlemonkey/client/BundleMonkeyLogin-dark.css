@@ -16,3 +16,11 @@
 #progressBar {
   -fx-padding: 5 0 5 220;
 }
+
+#loginPane {
+  -fx-padding: 0 0 0 200;
+}
+
+#revealButton {
+  -fx-background-color: transparent;
+}

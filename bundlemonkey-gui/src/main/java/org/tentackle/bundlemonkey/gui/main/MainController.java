@@ -146,9 +146,7 @@ public class MainController extends AbstractFxController implements DomainContex
     innerBorderPane.setTop(localeSelector.getView());
 
     preferencesItem.setGraphic(Fx.createGraphic("preferences"));
-    preferencesItem.setDisable(!SecurityFactory.getInstance().getSecurityManager().evaluate(
-                getDomainContext(), SecurityFactory.getInstance().getExecutePermission(), PreferencesDialog.class).isAccepted());
-    preferencesItem.setOnAction(e -> PreferencesDialog.show());
+    preferencesItem.setOnAction(e -> PreferencesDialog.show(getView()));
 
     discardItem.setGraphic(Fx.createGraphic("reload"));
     discardItem.setOnAction(e -> loadRepository());
@@ -202,6 +200,9 @@ public class MainController extends AbstractFxController implements DomainContex
 
   @Override
   public void configure() {
+    preferencesItem.setDisable(!SecurityFactory.getInstance().getSecurityManager().evaluate(
+      getDomainContext(), SecurityFactory.getInstance().getExecutePermission(), PreferencesDialog.class).isAccepted());
+
     bundlesTreeTable.setSortable(false);
     bundlesTreeTable.setReorderable(false);
     bundlesTreeTable.setRowFactory(treeTableView -> new TreeTableRow<>() {
@@ -602,7 +603,7 @@ public class MainController extends AbstractFxController implements DomainContex
   private void renameBundle() {
     BundleName bundleName = getSelectedBundleName();
     if (bundleName != null) {
-      RenameBundleDialog.show(bundleName, this::loadRepository);
+      RenameBundleDialog.show(getView(), bundleName, this::loadRepository);
     }
   }
 
@@ -612,7 +613,8 @@ public class MainController extends AbstractFxController implements DomainContex
   private void renamePackage() {
     BundleName bundleName = getSelectedBundleName();
     if (bundleName != null) {
-      RenamePackageDialog.show(ReflectionHelper.getPackageName(bundleName.getName()), bundleRepository, this::loadRepository);
+      RenamePackageDialog.show(getView(), ReflectionHelper.getPackageName(bundleName.getName()),
+                               bundleRepository, this::loadRepository);
     }
   }
 

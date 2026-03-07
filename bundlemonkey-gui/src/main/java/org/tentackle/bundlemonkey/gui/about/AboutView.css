@@ -7,6 +7,7 @@
   -fx-min-width: 600;
   -fx-min-height: 300;
   -fx-border-style: solid;
+  -fx-border-color: darkgray;
 }
 
 #closeButton {

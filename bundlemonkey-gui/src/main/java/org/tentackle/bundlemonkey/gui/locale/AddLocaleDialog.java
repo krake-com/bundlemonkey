@@ -46,10 +46,11 @@ public class AddLocaleDialog extends AbstractFxController {
   /**
    * Shows the add locale dialog.
    *
+   * @param owner the owner window or node
    * @param localeAdder the consumer invoked when locale was added
    */
-  public static void show(Consumer<String> localeAdder) {
-    Stage stage = Fx.createStage(Modality.NONE);
+  public static void show(Object owner, Consumer<String> localeAdder) {
+    Stage stage = Fx.createStage(Modality.NONE, owner);
     AddLocaleDialog dialog = Fx.load(AddLocaleDialog.class);
     dialog.setLocaleAdder(localeAdder);
     stage.setTitle(dialog.resources.getString("add locale"));

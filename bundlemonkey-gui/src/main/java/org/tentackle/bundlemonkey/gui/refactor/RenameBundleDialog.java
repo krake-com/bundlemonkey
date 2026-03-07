@@ -48,11 +48,12 @@ public class RenameBundleDialog extends AbstractFxController {
   /**
    * Shows the dialog.
    *
+   * @param owner the owner window or node
    * @param bundle the bundle to rename
    * @param done runnable invoked when dialog is done
    */
-  public static void show(BundleName bundle, Runnable done) {
-    Stage stage = Fx.createStage(Modality.NONE);
+  public static void show(Object owner, BundleName bundle, Runnable done) {
+    Stage stage = Fx.createStage(Modality.NONE, owner);
     RenameBundleDialog dialog = Fx.load(RenameBundleDialog.class);
     dialog.bundle = Objects.requireNonNull(bundle);
     dialog.newName = ReflectionHelper.getPackageName(bundle.getName());

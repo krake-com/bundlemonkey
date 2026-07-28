@@ -25,6 +25,7 @@ import org.tentackle.fx.AbstractFxController;
 import org.tentackle.fx.BundleMonkeyHelper;
 import org.tentackle.fx.Fx;
 import org.tentackle.fx.FxControllerService;
+import org.tentackle.fx.MacUtilities;
 import org.tentackle.fx.component.FxButton;
 import org.tentackle.fx.component.FxLabel;
 import org.tentackle.fx.component.FxTextField;
@@ -42,6 +43,7 @@ import javafx.application.Platform;
 import javafx.collections.ListChangeListener;
 import javafx.fxml.FXML;
 import javafx.scene.control.ContextMenu;
+import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.Tooltip;
 import javafx.scene.control.TreeItem;
@@ -82,6 +84,9 @@ public class MainController extends AbstractFxController implements DomainContex
 
   @FXML
   private BorderPane outerBorderPane;                     // outer borderpane with menu, inner borderpane and buttons below
+
+  @FXML
+  private MenuBar menuBar;
 
   @FXML
   private BorderPane innerBorderPane;                     // inner border pane with locale selector, tree table and bundle editor
@@ -200,6 +205,9 @@ public class MainController extends AbstractFxController implements DomainContex
 
   @Override
   public void configure() {
+    if (StringHelper.getPlatform().contains("mac")) {
+      MacUtilities.getInstance().toSystemMenuBar(menuBar);
+    }
     preferencesItem.setDisable(!SecurityFactory.getInstance().getSecurityManager().evaluate(
       getDomainContext(), SecurityFactory.getInstance().getExecutePermission(), PreferencesDialog.class).isAccepted());
 

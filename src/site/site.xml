@@ -28,7 +28,7 @@
     <menu ref="modules"/>
     <menu ref="reports"/>
     <menu name="Links">
-      <item name="Bitbucket" href="https://bitbucket.org/krake-oss/bundlemonkey"/>
+      <item name="GitHub" href="https://github.com/krake-com/bundlemonkey"/>
       <item name="Tentackle" href="https://tentackle.org"/>
     </menu>
 

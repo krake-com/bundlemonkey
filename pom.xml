@@ -62,14 +62,14 @@
   </properties>
 
   <scm>
-    <connection>scm:git:https://bitbucket.org/krake-oss/bundlemonkey.git</connection>
-    <developerConnection>scm:git:ssh://git@bitbucket.org/krake-oss/bundlemonkey.git</developerConnection>
-    <url>https://bitbucket.org/krake-oss/bundlemonkey/</url>
+    <connection>scm:git:https://github.com/krake-com/bundlemonkey.git</connection>
+    <developerConnection>scm:git:ssh://git@github.com/krake-com/bundlemonkey.git</developerConnection>
+    <url>https://github.com/krake-com/bundlemonkey/</url>
   </scm>
 
   <issueManagement>
-    <system>Bitbucket</system>
-    <url>https://bitbucket.org/krake-oss/bundlemonkey/</url>
+    <system>GitHub</system>
+    <url>https://github.com/krake-com/bundlemonkey/issues</url>
   </issueManagement>
 
   <distributionManagement>

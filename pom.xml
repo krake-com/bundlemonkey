@@ -4,7 +4,7 @@
 
   <groupId>org.tentackle</groupId>
   <artifactId>bundlemonkey</artifactId>
-  <version>1.0.15</version>
+  <version>1.0.16</version>
   <packaging>pom</packaging>
 
   <name>BundleMonkey Parent</name>
@@ -41,7 +41,7 @@
 
   <properties>
     <rootBasedir>${project.basedir}</rootBasedir>
-    <project.build.outputTimestamp>2026-11-27T18:00:00Z</project.build.outputTimestamp>
+    <project.build.outputTimestamp>2026-11-27T17:53:07Z</project.build.outputTimestamp>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.build.resourceEncoding>UTF-8</project.build.resourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>

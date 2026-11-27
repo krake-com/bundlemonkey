@@ -45,7 +45,7 @@ jobs:
           cache: maven
 
       - name: Set up Maven
-        uses: stCarolas/setup-maven@v5
+        uses: stCarolas/setup-maven@v5.1
         with:
           maven-version: 3.9.16
 
@@ -65,9 +65,9 @@ jobs:
             echo "expected exactly one jlink zip, found: ${zips[*]}" >&2
             exit 1
           fi
-          version=$(basename "${zips[0]}" | sed -E 's/^bundlemonkey-jlink-client-(.*)-jlink\.zip$/\1/')
+          # version-free name, so .../releases/latest/download/<name> stays stable
           mkdir -p dist
-          cp "${zips[0]}" "dist/bundlemonkey-${version}-${{ matrix.platform }}.zip"
+          cp "${zips[0]}" "dist/bundlemonkey-${{ matrix.platform }}.zip"
           ls -l dist
 
       - name: Upload image
